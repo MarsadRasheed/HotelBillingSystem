@@ -64,3 +64,85 @@ ExitProcess proto,dwExitCode:dword
     billing BYTE  '      Total Bill:   Rs ',0    
 
 .code
+main proc
+     call Crlf
+     call Crlf
+	mov edx,OFFSET string
+     call WriteString
+     L1:                         
+       mov edx,OFFSET string1
+       call WriteString
+       mov edx,OFFSET spaces
+       call WriteString
+       call ReadDec
+       call Checkerror    ; check whether user enter the number in given range
+
+       cmp eax,1      ; comparison b/w what user enter with each item of list
+       je L2
+       cmp eax,2
+       je L3
+       cmp eax,3
+       je L4
+       cmp eax,4
+       je L5
+       cmp eax,5
+       je L6
+       jmp last
+
+     L2: call Oriental       ; calling procedures depends on what user enters
+         jmp L7
+     L3: call Chinese
+         jmp L7
+     L4: call FastFood
+         jmp L7
+     L5: call Drinks
+         jmp L7
+     L6: call Dessert
+     L7: mov edx,OFFSET string2
+         call WriteString
+         mov edx,OFFSET spaces
+         call WriteString
+         call ReadDec
+         call Checkerror1
+         cmp eax,1           ; if user want to continue then jump to L1
+         je L1
+     last:                    
+         call Crlf
+         call Crlf
+         mov edx,OFFSET billing
+         call WriteString
+         mov eax,bill        
+         call WriteDec       ; prints the bill
+         call Crlf   ; next line
+         call Crlf
+         call WaitMsg
+	invoke ExitProcess,0
+main endp
+
+
+Oriental PROC
+
+; print the oriental menu and add prices into bill according to which item of what quantity user selects 
+; and call another func(NaanRoti) according to requirment
+; Receives: string4, buffer4
+; Returns: return updated bill
+;-----------------------------------------------
+
+		mov edx, offset orientalf
+		call OpenInputFile
+	
+		mov edx, offset msg1
+		mov ecx, sizeof msg1
+
+		Call ReadFromFile
+	
+	; Printing String from Msg1
+	
+		mov edx, offset msg1
+		call WriteString
+
+
+         ;mov edx,OFFSET string4
+        ; call WriteString
+		 call crlf
+         mov edx,OFFSET spaces
