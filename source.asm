@@ -146,3 +146,83 @@ Oriental PROC
         ; call WriteString
 		 call crlf
          mov edx,OFFSET spaces
+	          call ReadDec
+         call Crlf
+         call Checkerror3
+         cmp eax,1
+         je L1
+         cmp eax,2
+         je L2
+         cmp eax,3
+         je L3
+         cmp eax,4
+         je L4
+         cmp eax,5
+         jmp last
+ L1: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer4]      ; buffer4 is array contains price of oriental foods
+     L11:                   ; quantity times a loop L11 runs           
+        add bill,ebx            ; add price into bill
+        loop L11
+     jmp last
+ L2: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer4 + 4]
+     L22:
+         add bill,ebx
+         loop L22
+     call NaanRoti
+     jmp last
+ L3: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer4 + 8]
+     L33:
+         add bill,ebx
+         loop L33
+     call NaanRoti
+     jmp last
+ L4: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer4 + 12]
+     L44:
+         add bill,ebx
+         loop L44
+     call NaanRoti
+last:
+ret
+Oriental ENDP
+
+NaanRoti PROC
+
+
+; print the menu(naan,roti) and add prices into bill according to which item of what quantity user selects 
+; Receives: string3, buffer3
+; Returns: return updated bill
+;-----------------------------------------------
+ 
+        mov edx,OFFSET string3
+        call WriteString
+        mov edx,OFFSET spaces
+        call WriteString
+        call ReadDec
+        call Checkerror2
+        cmp eax,1
+        je L1
+        cmp eax,2
+        je L2
+        jmp last
+     L1:
+
