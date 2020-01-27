@@ -225,4 +225,85 @@ NaanRoti PROC
         je L2
         jmp last
      L1:
+             mov ebx,[buffer3]    ; buuffer3 is array contains price of Naan and roti
+        mov edx,OFFSET Quantity
+        call WriteString
+        call ReadDec
+        call Crlf
+        mov ecx,eax
+        L11:
+          add bill,ebx
+          loop L11
+       jmp last
+     L2:
+        mov ebx,[buffer3 + 4]
+        mov edx,OFFSET Quantity
+        call WriteString
+        call ReadDec
+        call Crlf
+        mov ecx,eax
+        L22:
+          add bill,ebx
+          loop L22
+last:
+ret
+NaanRoti ENDP
+
+
+Chinese PROC
+
+
+; print the chinese menu and add prices into bill according to which item of what quantity user selects 
+; Receives: string5, buffer5
+; Returns: return updated bill
+;-----------------------------------------------
+	
+		mov edx, offset chinesef
+		call OpenInputFile
+	;
+		mov edx, offset msg1
+		mov ecx, sizeof msg1
+		
+		Call ReadFromFile
+	
+	; Printing String from Msg1
+	
+
+		mov edx, offset msg1
+		call WriteString
+		call crlf
+
+;         mov edx,OFFSET string5
+;         call WriteString
+         mov edx,OFFSET spaces
+         call WriteString
+         call ReadDec
+         call Crlf
+         call Checkerror3       ; check for error
+         cmp eax,1
+         je L1
+         cmp eax,2
+         je L2
+         cmp eax,3
+         je L3
+         cmp eax,4
+         je L4
+         cmp eax,5
+         jmp last
+
+ ; price of 1st,2nd,.. item of Chinese menu is on 1st,2nd.. index of buffer5 respectively
+ ; same for all other menus
+
+ L1: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     mov ecx,eax
+     mov ebx,[buffer5]   
+     L11:
+        add bill,ebx
+        loop L11
+     jmp last
+ L2: mov edx,OFFSET Quantity
+     call WriteString
+
 
