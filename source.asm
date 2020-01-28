@@ -305,5 +305,95 @@ Chinese PROC
      jmp last
  L2: mov edx,OFFSET Quantity
      call WriteString
+     call ReadDec
+     mov ecx,eax
+     mov ebx,[buffer5 + 4]
+     L22:
+         add bill,ebx
+         loop L22
+     jmp last
+ L3: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer5 + 8]
+     L33:
+         add bill,ebx
+         loop L33
+     jmp last
+ L4: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer5 + 12]
+     L44:
+         add bill,ebx
+         loop L44
+last:
+
+ret
+Chinese ENDP
+         
+FastFood PROC
+
+
+; print the fastfood menu and add prices into bill according to which item of what quantity user selects 
+; Receives: string6, buffer6
+; Returns: return updated bill
+;-----------------------------------------------
+
+
+		mov edx, offset fastfoodf
+		call OpenInputFile
+	;
+		mov edx, offset msg1
+		mov ecx, sizeof msg1
+
+		Call ReadFromFile
+	
+	; Printing String from Msg1
+	
+
+		mov edx, offset msg1
+		call WriteString
+		call crlf
+
+
+;         mov edx,OFFSET string6
+;         call WriteString
+         mov edx,OFFSET spaces
+         call WriteString
+         call ReadDec
+         call Crlf
+         call Checkerror3
+         cmp eax,1
+         je L1
+         cmp eax,2
+         je L2
+         cmp eax,3
+         je L3
+         cmp eax,4
+         je L4
+         cmp eax,5
+         jmp last
+ L1: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer6]
+     L11:
+        add bill,ebx
+        loop L11
+     jmp last
+ L2: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer6 + 4]
+     L22:
 
 
