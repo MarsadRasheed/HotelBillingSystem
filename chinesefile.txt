@@ -1,0 +1,5 @@
+      Enter 1 - Egg Fried Rice               = Rs 150 per plate
+      Enter 2 - Chicken Manchurian with rice = Rs 165 per plate
+      Enter 3 - Chicken Macroni              = Rs 95 per plate
+      Enter 4 - Chicken Shahlik              = Rs 80 per plate 
+      Enter 5 - Exit  
