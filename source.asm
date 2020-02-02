@@ -473,5 +473,109 @@ Drinks PROC
      call WriteString
      call ReadDec
      call Crlf
+          mov ecx,eax
+     mov ebx,[buffer6 + 4]
+     L22:
+         add bill,ebx
+         loop L22
+     jmp last
+ L3: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer6 + 8]
+     L33:
+         add bill,ebx
+         loop L33
+     jmp last
+ L4: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer6 + 12]
+     L44:
+         add bill,ebx
+         loop L44
+last:
+ret
+FastFood ENDP
+         
+Drinks PROC
+
+
+; print the drinks menu and add prices into bill according to which item of what quantity user selects 
+; Receives: string7, buffer7
+; Returns: return updated bill
+;-----------------------------------------------
+
+		mov edx, offset drinkf
+		call OpenInputFile
+	;
+		mov edx, offset msg1
+		mov ecx, sizeof msg1
+
+		Call ReadFromFile
+	
+	; Printing String from Msg1
+	
+
+		mov edx, offset msg1
+		call WriteString
+		call crlf
+
+;         mov edx,OFFSET string7
+;         call WriteString
+         mov edx,OFFSET spaces
+         call WriteString
+         call ReadDec
+         call Crlf
+         call Checkerror3
+         cmp eax,1
+         je L1
+         cmp eax,2
+         je L2
+         cmp eax,3
+         je L3
+         cmp eax,4
+         je L4
+         cmp eax,5
+         jmp last
+ L1: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer7]
+     L11:
+        add bill,ebx
+        loop L11
+     jmp last
+ L2: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer7 + 4]
+     L22:
+         add bill,ebx
+         loop L22
+     jmp last
+ L3: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer7 + 8]
+     L33:
+         add bill,ebx
+         loop L33
+     jmp last
+ L4: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+
 
 
