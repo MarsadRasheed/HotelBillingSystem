@@ -1,0 +1,5 @@
+	Enter 1 - Coca Cola      = Rs 90 (1.5 litre)
+	Enter 2 - Sprite         = Rs 90 (1.5 litre)
+	Enter 3 - Mint Margarita = Rs 65
+	Enter 4 - Pineapple Juice= Rs 70
+	Enter 5 - Exit  

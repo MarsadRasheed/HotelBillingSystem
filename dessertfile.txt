@@ -1,0 +1,6 @@
+	Enter 1 - Choclate Cake     = Rs 155
+	Enter 2 - Brownie           = Rs 145
+	Enter 3 - Cocunut Cream Pie = Rs 75
+	Enter 4 - Vanilla Ice-cream = Rs 60
+	Enter 5 - Exit  
+
