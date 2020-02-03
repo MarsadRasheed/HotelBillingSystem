@@ -577,5 +577,106 @@ Drinks PROC
      call ReadDec
      call Crlf
 
+     mov ecx,eax
+     mov ebx,[buffer7 + 12]
+     L44:
+         add bill,ebx
+         loop L44
+last:
+ret
+Drinks ENDP
+         
+Dessert PROC
+
+
+; print the dessert menu and add prices into bill according to which item of what quantity user selects 
+; Receives: string8, buffer8
+; Returns: return updated bill
+;-----------------------------------------------
+
+		mov edx, offset dessertf
+		call OpenInputFile
+	
+		mov edx, offset msg1
+		mov ecx, sizeof msg1
+
+		Call ReadFromFile
+	
+	; Printing String from Msg1
+	
+
+		mov edx, offset msg1
+		call WriteString
+		call crlf
+
+;         mov edx,OFFSET string8
+;         call WriteString
+         mov edx,OFFSET spaces
+         call WriteString
+         call ReadDec
+         call Crlf
+         call Checkerror3
+         cmp eax,1
+         je L1
+         cmp eax,2
+         je L2
+         cmp eax,3
+         je L3
+         cmp eax,4
+         je L4
+         cmp eax,5
+         jmp last
+ L1: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer8]
+     L11:
+        add bill,ebx
+        loop L11
+     jmp last
+ L2: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer8 + 4]
+     L22:
+         add bill,ebx
+         loop L22
+     jmp last
+ L3: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     mov ecx,eax
+     call Crlf
+     mov ebx,[buffer8 + 8]
+     L33:
+         add bill,ebx
+         loop L33
+     jmp last
+ L4: mov edx,OFFSET Quantity
+     call WriteString
+     call ReadDec
+     call Crlf
+     mov ecx,eax
+     mov ebx,[buffer8 + 12]
+     L44:
+         add bill,ebx
+         loop L44
+
+last:
+ret
+Dessert ENDP
+
+Checkerror PROC
+
+; check whether eax contains value in range 1-6
+; Receives: eax
+; Returns: eax contains value in range 1-6 according to user's choice
+;-----------------------------------------------
+L1:
+
 
 
