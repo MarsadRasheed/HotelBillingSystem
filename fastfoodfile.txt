@@ -1,0 +1,5 @@
+	Enter 1 - Zinger Burger    = Rs 100
+	Enter 2 - Chicken Pizza    = Rs 150
+	Enter 3 - French Fries     = Rs 50
+	Enter 4 - Chicken Shawarma = Rs 95
+	Enter 5 - Exit  
