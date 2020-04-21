@@ -678,5 +678,85 @@ Checkerror PROC
 ;-----------------------------------------------
 L1:
 
+   cmp eax,1
+   jl L2
+   cmp eax,6
+   jg L2
+   jmp last
 
+L2:
+   mov edx, OFFSET errorMsg
+   call WriteString
+   call ReadDec
+   jmp L1
+last:
+ret
+Checkerror ENDP
 
+Checkerror1 PROC
+
+; check whether eax contains value either 1 or 2
+; Receives: eax
+; Returns: eax contains value either 1 or 2 according to user's choice
+;-----------------------------------------------
+L1:
+   cmp eax,1
+   jl L2
+   cmp eax,2
+   jg L2
+   jmp last
+
+L2:
+   mov edx, OFFSET errorMsg
+   call WriteString
+   call ReadDec
+   jmp L1
+last:
+ret
+Checkerror1 ENDP
+
+Checkerror2 PROC
+
+; check whether eax contains value in range 1-3
+; Receives: eax
+; Returns: eax contains value in range 1-3 according to user's choice
+;-----------------------------------------------
+L1:
+   cmp eax,1
+   jl L2
+   cmp eax,3
+   jg L2
+   jmp last
+
+L2:
+   mov edx, OFFSET errorMsg
+   call WriteString
+   call ReadDec
+   jmp L1
+last:
+ret
+Checkerror2 ENDP
+
+Checkerror3 PROC
+
+; check whether eax contains value in range 1-5
+; Receives: eax
+; Returns: eax contains value in range 1-6 according to user's choice
+;-----------------------------------------------
+L1:
+   cmp eax,1
+   jl L2
+   cmp eax,5
+   jg L2
+   jmp last
+
+L2:
+   mov edx, OFFSET errorMsg
+   call WriteString
+   call ReadDec
+   jmp L1
+last:
+ret
+Checkerror3 ENDP
+
+end main
